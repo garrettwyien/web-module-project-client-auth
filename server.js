@@ -58,7 +58,7 @@ function authenticator(req, res, next) {
   }
 }
 
-app.post('/api/login', (req, res) => {
+app.post('http://localhost:5000/login', (req, res) => {
   const { username, password } = req.body;
   if (username === 'lambda' && password === 'school') {
     req.loggedIn = true;
@@ -72,20 +72,20 @@ app.post('/api/login', (req, res) => {
   }
 });
 
-app.post('/api/logout', authenticator, (req, res) => {
+app.post('http://localhost:5000/logout', authenticator, (req, res) => {
   req.loggedIn = false;
   res.status(200).json({
     payload: token
   });
 });
 
-app.get('/api/friends', authenticator, (req, res) => {
+app.get('http://localhost:5000/friends', authenticator, (req, res) => {
   setTimeout(() => {
     res.send(friends);
   }, 1000);
 });
 
-app.get('/api/friends/:id', authenticator, (req, res) => {
+app.get('http://localhost:5000/friends/:id', authenticator, (req, res) => {
   const friend = friends.find(f => f.id == req.params.id);
 
   if (friend) {
