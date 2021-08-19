@@ -6,8 +6,6 @@ import Logout from './components/logout';
 import FriendsList from './components/friendslist';
 import PrivateRoute from './components/privateroute';
 
-
-
 function App() {
   return (
     <Router>

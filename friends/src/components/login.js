@@ -22,7 +22,6 @@ class Login extends React.Component {
             .then(res => {
                 console.log(res);
                 localStorage.setItem("token", res.data.token);
-                localStorage.setItem("role", res.data.role);
                 localStorage.setItem("username", res.data.username);
                 this.props.history.push('/protected');
             })
@@ -34,7 +33,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <form>
+                <form onSubmit={this.login}>
                     Username:
                     <input
                     type="text"
