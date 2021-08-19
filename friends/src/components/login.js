@@ -8,7 +8,7 @@ class Login extends React.Component {
             password: ''
         }
     };
-    handlechange = e => {
+    handleChange = e => {
         this.setState({
             credentials: {
                 ...this.state.credentials,
@@ -18,7 +18,7 @@ class Login extends React.Component {
     };
     login = e => {
         e.preventDefault();
-        axios.post(`http://localhost:5000`, this.state.credentials)
+        axios.post(`http://localhost:5000/login`, this.state.credentials)
             .then(res => {
                 console.log(res);
                 localStorage.setItem("token", res.data.token);
@@ -35,20 +35,18 @@ class Login extends React.Component {
         return (
             <div>
                 <form>
+                    Username:
                     <input
                     type="text"
                     name="username"
                     value={this.state.credentials.username}
-                    onChange={this.handleChange}>
-                        Username:
-                    </input>
+                    onChange={this.handleChange}/>
+                    Password:
                     <input
                     type="password"
                     name="password"
-                    value={this.state.credentials.username}
-                    onChange={this.handleChange}>
-                        Password:
-                    </input>
+                    value={this.state.credentials.password}
+                    onChange={this.handleChange}/>
                     <button>Log in</button>
                 </form>
             </div>
